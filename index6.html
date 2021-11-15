@@ -1,0 +1,27 @@
+<html>
+<body>
+<script>
+function draw(){
+var ctx = document.getElementById("my_canvas").getContext("2d");
+
+ctx.fillStyle = "magenta";
+var rectW = 100;
+var rectH = 100;
+var rectX = ((ctx.canvas.width / 2) -(rectW /2));
+var rectY = ((ctx.canvas.height / 2) - (rectH /2));
+
+ctx.fillRect(rectX, rectY, rectW, rectH);
+}
+window.onload = draw;
+</script>
+
+<canvas id="my_canvas" width="400" height="400">
+
+</body>
+</html>
+
+<style>
+
+body{background-color: #b4b4b4;}
+#my_canvas{background-color:#fff;}
+</style>

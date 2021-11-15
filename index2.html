@@ -1,0 +1,29 @@
+<html>
+<head>
+ <style>
+#my_canvas{
+background:#eee;
+}
+</style>
+
+<script>
+function draw(){
+ var ctx = document.getElementById('my_canvas').getContext('2d');
+ 
+//ctx.arc(x,y,radius,startAngle, endAngle, anticlockwise);
+
+ctx.arc(250,100,50,0, Math.PI*2, true);
+ctx.stroke();
+
+ 
+}
+window.onload = draw;
+</script>
+
+</head>
+<body>
+
+<canvas id="my_canvas" width="500" height="400"> </canvas>
+
+</body>
+</html>

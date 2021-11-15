@@ -1,0 +1,40 @@
+<html>
+<head>
+<script>
+function graph(){
+var ctx = document.getElementById("canvas").getContext("2d");
+var gl = ctx.createRadialGradient(250,250,0,250,250,250);
+gl.addColorStop(0.1,"#38f");
+gl.addColorStop(0.3,"#7ff");
+
+
+ctx.strokeStyle="fff";
+ctx.lineWidth=10;
+ctx.fillStyle=gl;
+ctx.fillRect(0,1,200,200);
+ctx.strokeRect(0,1,200,200);
+
+ctx.arc(350,200,100,0,Math.PI*2,true);
+ctx.stroke();
+ }
+window.addEventListener('load',function(){
+graph();
+});
+
+
+
+</script>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+</body>
+</html>
+<style>
+body{
+background-color:#0ef;
+}
+canvas{
+background-color:rgba(125,125,255,0.3);
+}
+
+</style>

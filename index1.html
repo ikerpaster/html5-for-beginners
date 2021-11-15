@@ -1,0 +1,48 @@
+<html>
+<head>
+ <style>
+#my_canvas{
+background:#eee;
+}
+</style>
+
+<script>
+function draw(){
+ var ctx = document.getElementById('my_canvas').getContext('2d');
+ 
+ctx.beginPath();
+
+ctx.lineCap = "miter"; //round,miter,butt
+ctx.setLineDash([6,10,20,1,50]);
+ctx.lineJoin = "miter" // beyel, round,miter
+ctx.lineDashOffset = 10;
+
+
+ctx.lineWidth = 10;
+ctx.moveTo(400,20);
+ctx.lineTo(50,20);
+ctx.lineTo(50,205);
+ctx.lineTo(400,205);
+ctx.lineTo(400,15);
+
+ctx.strokeStyle = "#12f";
+ctx.stroke();
+ctx.fillStyle=("#feac11");
+ctx.fill();
+
+
+
+ 
+}
+window.onload = draw;
+</script>
+
+</head>
+<body>
+
+<canvas id="my_canvas" width="500" height="400"> </canvas>
+
+</body>
+</html>
+
+

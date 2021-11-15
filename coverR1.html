@@ -1,0 +1,30 @@
+<html>
+<head>
+<style>
+body{
+background:#b4b4b4;
+}
+</style>
+<script>
+function draw(){
+
+var ctx = document.getElementById("my_canvas").getContext("2d");
+
+ctx.lineWidth = 5;
+ctx.strokeStyle =("green");
+ctx.fillStyle= "#ff0";
+ctx.fillRect(200,200,300,300);
+ctx.strokeRect(200,200,300,300);
+
+}
+window.onload = draw;
+
+</script>
+</head>
+<body>
+
+<canvas id="my_canvas" width="600" height="600"> </canvas>
+
+
+</body>
+</html>

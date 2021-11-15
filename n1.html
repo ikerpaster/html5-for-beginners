@@ -1,0 +1,46 @@
+<html>
+<head>
+<script>
+function draw(){
+
+var ctx = document.getElementById("the_canvas").getContext("2d");
+
+
+var gl = ctx.createRadialGradient(250,250,0,250,250,250);
+ //ctx.arc(x,y,r,starting,ending,anticlockwise);
+gl.addColorStop(0.1, "#ff0");
+gl.addColorStop(0.2, "#ff0");
+gl.addColorStop(0.5, "#000");
+gl.addColorStop(1, "#0f0");
+ctx.arc( 200,200,50,0,Math.PI*2,true);
+
+ctx.fillStyle = gl;
+ctx.strokeStyle = "#0ff";
+ctx.lineWidth = 10;
+ctx.stroke();
+ctx.fill();
+}
+
+window.onload = draw;
+
+</script>
+</head>
+<body>
+
+<canvas id="the_canvas" width="400" height="500"> </canvas>
+
+
+</body>
+</html>
+
+<style>
+
+body{
+background-color:#b4b4b4;
+}
+
+#the_canvas{
+background-color:#fff;
+}
+
+</style>

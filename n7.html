@@ -1,0 +1,253 @@
+<html>
+<body>
+<style>
+body{background-image: url(images/p4.jpg);
+background-size: cover;
+}
+#my_canvas{background-color: rgba(0,0,0,0.5); border:10px #fff solid; box-shadow: 0px 0px 10px #000;}
+
+</style>
+
+<script>
+
+function initCanvas(){
+var ctx = document.getElementById("my_canvas").getContext("2d");
+ var cW = ctx.canvas.width, cH = ctx.canvas.height;
+var speed = 3;
+/* var restartGame = document.getElementById('restart');
+
+
+document.addEventListener('click',function(restartGame){
+window.location.href = "";
+}
+*/
+
+
+
+
+var enemies = [
+{"id":"enemy1","x":0,"y":0,"w":400,"h":50},
+{"id":"enemy2","x":100,"y":20,"w":10,"h":5},
+{"id":"enemy3","x":200,"y":20,"w":10,"h":5},
+{"id":"enemy4","x":250,"y":70,"w":10,"h":5},
+{"id":"enemy5","x":400,"y":70,"w":10,"h":5},
+
+{"id":"enemy6","x":500,"y":-200,"w":40,"h":20},
+{"id":"enemy7","x":670,"y":-220,"w":40,"h":20},
+{"id":"enemy8","x":610,"y":-250,"w":10,"h":5},
+{"id":"enemy9","x":690,"y":-270,"w":40,"h":20},
+{"id":"enemy10","x":640,"y":-270,"w":40,"h":20},
+
+{"id":"enemy12","x":0,"y":-300,"w":40,"h":20},
+{"id":"enemy13","x":510,"y":-320,"w":40,"h":20},
+{"id":"enemy13","x":100,"y":-350,"w":40,"h":20},
+{"id":"enemy15","x":150,"y":-370,"w":40,"h":20},
+{"id":"enemy16","x":600,"y":-370,"w":40,"h":20},
+
+{"id":"enemy17","x":100,"y":-600,"w":40,"h":20},
+{"id":"enemy18","x":690,"y":-620,"w":40,"h":20},
+{"id":"enemy19","x":310,"y":-650,"w":40,"h":20},
+{"id":"enemy20","x":590,"y":-770,"w":100,"h":20},
+{"id":"enemy21","x":240,"y":-970,"w":200,"h":200},
+
+{"id":"enemy22","x":0,"y":-600,"w":10,"h":5},
+{"id":"enemy23","x":30,"y":-620,"w":10,"h":5},
+{"id":"enemy24","x":400,"y":-650,"w":10,"h":5},
+{"id":"enemy25","x":100,"y":-770,"w":10,"h":5},
+{"id":"enemy26","x":0,"y":-970,"w":10,"h":5},
+
+{"id":"enemy27","x":350,"y":-70,"w":40,"h":20},
+
+{"id":"enemy28","x":100,"y":-1000,"w":400,"h":500}
+];
+
+function renderEnemies(){
+for(var i = 0; i< enemies.length *2; i++){
+ ctx.fillStyle = "orange";
+ ctx.fillRect(enemies[i].x, enemies[i].y+=.5, enemies[i].w, enemies[i].h);
+}
+}
+
+function Launcher(){
+this.y = cH-5, this.x = cW*.5-25, this.w = 10, this.h = 5, this.dir, this.bg = "orange", this.missiles = [];
+
+this.render = function(){
+ if(this.dir == 'left'){
+this.x-=5;
+}
+else if(this.dir == 'right'){
+this.x+=5;
+}
+ctx.fillStyle =this.bg;
+ctx.fillRect(this.x, this.y, this.w,this.h);
+
+for(var i=0; i<this.missiles.length; i++){
+var m = this.missiles[i];
+ctx.fillStyle = m.bg;
+ctx.fillRect(m.x,m.y-=5,m.w,m.h);
+this.hitDetect(this.missiles[i],i);
+
+if(m.y <= 0){
+ this.missiles.splice(i,1);
+}
+}
+
+if(enemies.length == 0){
+clearInterval(animateInterval);
+ctx.fillStyle ="#fc0";
+ctx.font = 'italic bold 36px Arial, sans-serif';
+ctx.fillText('level Complete', cW*.5-130, 50,300);
+
+}
+
+}
+this.hitDetect = function(m,mi){
+for(var i = 0; i< enemies.length; i++){
+var e = enemies[i];
+if(m.x+m.w >= e.x && m.x <= e.x+e.w && m.y >= e.y && m.y <= e.y+e.h){
+this.missiles.splice(this.missiles[mi],1);
+var ing = enemies.splice(i,1);
+
+//alert(enemies.length);
+
+if(ing){
+//var ingp = ing.length;
+
+ for(var ingp=0; ingp <= enemies.length; ingp++)
+document.getElementById('rest').innerHTML = "Rest "+ ingp + "enemies";
+
+
+var abayo = ingp - enemies.length;
+for(abayo=0; abayo <= enemies.length; abayo++){
+document.getElementById('shoot').innerHTML = "shoot "+ abayo + "enemies";
+}
+
+
+}
+document.getElementById('status').innerHTML = "you destroyed "+ e.id;
+
+}
+
+
+
+}
+
+}
+
+}
+
+var launcher = new Launcher();
+
+
+
+
+function animate(){
+ctx.clearRect(0,0, cW,cH);
+launcher.render();
+renderEnemies();
+}
+var animateInterval = setInterval(animate, 50);
+
+
+// the listeners from the button
+/*
+var left_btn = document.getElementById('left_btn');
+var right_btn = document.getElementById('right_btn');
+var fire_btn = document.getElementById('fire_btn');
+
+left_btn.addEventListener('mousedown', function(event){
+launcher.dir = 'left';
+});
+
+left_btn.addEventListener('mouseup', function(event){
+launcher.dir = ' ';
+});
+
+right_btn.addEventListener('mousedown', function(event){
+launcher.dir = 'right';
+});
+
+right_btn.addEventListener('mouseup', function(event){
+launcher.dir = ' ';
+});
+
+fire_btn.addEventListener('mousedown', function(event){
+launcher.missiles.push({"x":launcher.x+launcher.w*.5, "y":launcher.y, "w":3,"h":10,"bg":"red"});
+});
+
+ */
+
+
+//conreol keyboard
+document.addEventListener('keydown', function(event){
+
+var key_press = String.fromCharCode(event.keyCode);
+//alert(event.keyCode+" | "+key_press);
+
+
+ if(key_press == '\''){
+ launcher.x +=speed;
+
+}
+ else if(key_press == '%'){
+ //launcher.dir= 'left';
+ launcher.x -=speed;
+
+}
+
+ else if(key_press == 'P'){
+
+window.location.href = " ";
+}
+
+ else if(key_press == 'L'){
+ launcher.x +=100;
+}
+
+ else if(key_press == 'A'){
+
+launcher.x -=100;
+}
+
+ else if(key_press == 'M'){
+ launcher.missiles.push({"x":launcher.x+launcher.w*.5, "y":launcher.y, "w":700,"h":400,"bg":"rgba(0,0,0,0.0)"});
+}
+
+
+ else if(key_press == ' '){
+ launcher.missiles.push({"x":launcher.x+launcher.w*.5, "y":launcher.y, "w":5,"h":10,"bg":"red"});
+
+}
+
+ else if(key_press == 'T'){
+ launcher.missiles.push({"x":launcher.x+launcher.w*.5, "y":launcher.y, "w":700,"h":10,"bg":"red"});
+
+}
+
+ else{
+alert(" arikox mwana ubwo urimo gukanda kuri  "+key_press+ " ushaka iki kweri koko");
+}
+});
+
+
+}
+
+window.addEventListener('load',function(event){
+initCanvas();
+});
+</script>
+
+<canvas id="my_canvas" width="700" height="400"> </canvas>
+
+<h3 id="status"> </h3>
+<h3 id="rest"> </h3>
+<h3 id="shoot"> </h3>
+
+</body>
+</html>
+
+<script>
+
+
+
+</script>

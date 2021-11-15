@@ -1,0 +1,31 @@
+<html>
+<script>
+ 
+function draw(){
+
+var ctx = document.getElementById("mycanvas").getContext("2d");
+ctx.arc(250,200,100,0,Math.PI*2, true);
+
+var n = ctx.createRadialGradient(250,300,0,250,100,100);
+/*
+var gl = ctx.createRadialGradient(250,250,0,250,250,250);
+gl.addColorStop(0.1,"#38f");
+gl.addColorStop(0.3,"#7ff");
+*/
+
+n.addColorStop(0.4,"#ff0");
+ctx.fillStyle = n;
+ctx.strokeStyle = "#000";
+ctx.lineWidth = 10;
+ctx.stroke();
+ctx.fill();
+
+
+}
+window.onload = draw;
+</script>
+<body>
+
+<canvas id="mycanvas" width="400" height="400">
+</body>
+</html>
